@@ -1,0 +1,79 @@
+name: Build iOS IPA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-ipa:
+    runs-on: macos-15
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Godot 4
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.7.2
+          use-dotnet: false
+          include-templates: true
+
+      - name: Prepare Clean Project for Export
+        run: |
+          rm -rf addons
+          python3 -c '
+          with open("project.godot", "r") as f:
+              lines = f.readlines()
+          with open("project.godot", "w") as f:
+              for line in lines:
+                  if "_mcp_game_helper" in line or "res://addons/" in line:
+                      continue
+                  f.write(line)
+          '
+
+      - name: Export Godot iOS Project
+        run: |
+          mkdir -p export
+          godot --headless --verbose --export-debug "iOS" export/DarknetMoney.zip
+
+      - name: Compile and Package IPA
+        run: |
+          xcodebuild -project export/DarknetMoney.xcodeproj \
+            -scheme DarknetMoney \
+            -configuration Debug \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            IPHONEOS_DEPLOYMENT_TARGET=17.0 \
+            OTHER_LDFLAGS='$(inherited) -framework QuartzCore -framework Metal -framework MetalKit -framework UIKit -Wl,-U,_CADynamicRangeAutomatic -Wl,-U,_CADynamicRangeConstrainedHigh -Wl,-U,_CADynamicRangeHigh -Wl,-U,_CADynamicRangeStandard -Wl,-U,_MTLTensorDomain' \
+            build
+
+          # Создаем структуру IPA (Payload/*.app) без Deflate сжатия (для совместимости со всеми инсталлерами)
+          mkdir -p Payload
+          cp -R build/Build/Products/Debug-iphoneos/*.app Payload/
+          zip -0 -y -r -q DarknetMoney.ipa Payload
+          mkdir -p ipa_output
+          mv DarknetMoney.ipa ipa_output/
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DarknetMoney-iOS-IPA
+          path: ipa_output/DarknetMoney.ipa
+          retention-days: 7
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: "Darknet Money iOS IPA (Build #${{ github.run_number }})"
+          body: "Свежая сборка Darknet Money для iOS (.ipa). Подходит для установки через Sideloadly, TrollStore, AltStore, Scarlet."
+          files: ipa_output/DarknetMoney.ipa
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

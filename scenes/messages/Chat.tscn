@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://chat_scene1"]
+
+[ext_resource type="Script" path="res://scenes/messages/Chat.gd" id="1_script"]
+[ext_resource type="Theme" uid="uid://darknettheme1" path="res://DARKNET_THEME.tres" id="2_theme"]
+
+[node name="Chat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.02, 0.03, 1)
+
+[node name="SafeAreaMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="SafeAreaMargin"]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="SafeAreaMargin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="BackBtn" type="Button" parent="SafeAreaMargin/VBox/Header"]
+layout_mode = 2
+text = "<"
+
+[node name="AvatarRect" type="TextureRect" parent="SafeAreaMargin/VBox/Header"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBox" type="VBoxContainer" parent="SafeAreaMargin/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="NameLbl" type="Label" parent="SafeAreaMargin/VBox/Header/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "NAME"
+
+[node name="StatusLbl" type="Label" parent="SafeAreaMargin/VBox/Header/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.8, 0.4, 1)
+theme_override_font_sizes/font_size = 18
+text = "Online (Encrypted)"
+
+[node name="HSeparator" type="HSeparator" parent="SafeAreaMargin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Scroll" type="ScrollContainer" parent="SafeAreaMargin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MessageList" type="VBoxContainer" parent="SafeAreaMargin/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="ChoicesBox" type="HBoxContainer" parent="SafeAreaMargin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1

@@ -1,0 +1,12 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+export/
+build/
+Payload/
+ipa_output/
+*.ipa
+*.zip
+*.log
+__pycache__/
+*.pyc

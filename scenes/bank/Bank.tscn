@@ -1,0 +1,212 @@
+[gd_scene load_steps=3 format=3 uid="uid://bankscene1"]
+
+[ext_resource type="Script" path="res://scenes/bank/Bank.gd" id="1_bank_script"]
+[ext_resource type="Theme" uid="uid://darknettheme1" path="res://DARKNET_THEME.tres" id="2_theme"]
+
+[node name="Bank" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_bank_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.04, 0.05, 1)
+
+[node name="SafeAreaMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBox" type="VBoxContainer" parent="SafeAreaMargin"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Header" type="HBoxContainer" parent="SafeAreaMargin/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="BackBtn" type="Button" parent="SafeAreaMargin/VBox/Header"]
+layout_mode = 2
+text = "< BACK"
+
+[node name="Title" type="Label" parent="SafeAreaMargin/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "SVT BANK"
+horizontal_alignment = 1
+
+[node name="HelpBtn" type="Button" parent="SafeAreaMargin/VBox/Header"]
+layout_mode = 2
+text = "HELP"
+
+[node name="TabButtons" type="HBoxContainer" parent="SafeAreaMargin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="OverviewBtn" type="Button" parent="SafeAreaMargin/VBox/TabButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OVERVIEW"
+
+[node name="TransBtn" type="Button" parent="SafeAreaMargin/VBox/TabButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TRANS"
+
+[node name="AccountsBtn" type="Button" parent="SafeAreaMargin/VBox/TabButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ACCOUNTS"
+
+[node name="SecurityBtn" type="Button" parent="SafeAreaMargin/VBox/TabButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SECURITY"
+
+[node name="TabContainer" type="TabContainer" parent="SafeAreaMargin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+tabs_visible = false
+
+[node name="Overview" type="VBoxContainer" parent="SafeAreaMargin/VBox/TabContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="BalanceCard" type="PanelContainer" parent="SafeAreaMargin/VBox/TabContainer/Overview"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="SafeAreaMargin/VBox/TabContainer/Overview/BalanceCard"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="SafeAreaMargin/VBox/TabContainer/Overview/BalanceCard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.55, 1)
+text = "TOTAL BALANCE"
+horizontal_alignment = 1
+
+[node name="TotalVal" type="Label" parent="SafeAreaMargin/VBox/TabContainer/Overview/BalanceCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "$0.00"
+horizontal_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="SafeAreaMargin/VBox/TabContainer/Overview/BalanceCard/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="AvailBox" type="VBoxContainer" parent="SafeAreaMargin/VBox/TabContainer/Overview/BalanceCard/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="SafeAreaMargin/VBox/TabContainer/Overview/BalanceCard/VBox/HBox/AvailBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.55, 1)
+text = "AVAILABLE"
+
+[node name="AvailVal" type="Label" parent="SafeAreaMargin/VBox/TabContainer/Overview/BalanceCard/VBox/HBox/AvailBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.8, 0.4, 1)
+text = "$0.00"
+
+[node name="FrozenBox" type="VBoxContainer" parent="SafeAreaMargin/VBox/TabContainer/Overview/BalanceCard/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="SafeAreaMargin/VBox/TabContainer/Overview/BalanceCard/VBox/HBox/FrozenBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.55, 1)
+text = "FROZEN"
+horizontal_alignment = 2
+
+[node name="FrozenVal" type="Label" parent="SafeAreaMargin/VBox/TabContainer/Overview/BalanceCard/VBox/HBox/FrozenBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.3, 0.3, 1)
+text = "$0.00"
+horizontal_alignment = 2
+
+[node name="RecentTitle" type="Label" parent="SafeAreaMargin/VBox/TabContainer/Overview"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.55, 1)
+text = "RECENT OPERATIONS"
+
+[node name="RecentContainer" type="VBoxContainer" parent="SafeAreaMargin/VBox/TabContainer/Overview"]
+layout_mode = 2
+
+[node name="Transactions" type="VBoxContainer" parent="SafeAreaMargin/VBox/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="SafeAreaMargin/VBox/TabContainer/Transactions"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="List" type="VBoxContainer" parent="SafeAreaMargin/VBox/TabContainer/Transactions/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="Accounts" type="VBoxContainer" parent="SafeAreaMargin/VBox/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SafeAreaMargin/VBox/TabContainer/Accounts"]
+layout_mode = 2
+text = "Accounts feature coming soon."
+
+[node name="Security" type="VBoxContainer" parent="SafeAreaMargin/VBox/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="SecCard" type="PanelContainer" parent="SafeAreaMargin/VBox/TabContainer/Security"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="SafeAreaMargin/VBox/TabContainer/Security/SecCard"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SafeAreaMargin/VBox/TabContainer/Security/SecCard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.55, 1)
+text = "SECURITY LEVEL"
+horizontal_alignment = 1
+
+[node name="LevelVal" type="Label" parent="SafeAreaMargin/VBox/TabContainer/Security/SecCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "1"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="SafeAreaMargin/VBox/TabContainer/Security/SecCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Higher level increases fees but prevents frozen funds and bank reviews."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SecSlider" type="HSlider" parent="SafeAreaMargin/VBox/TabContainer/Security/SecCard/VBox"]
+layout_mode = 2
+min_value = 1.0
+max_value = 5.0
+value = 1.0
+tick_count = 5

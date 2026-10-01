@@ -1,0 +1,51 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
+[application]
+
+config/name="DARKNET: MONEY"
+run/main_scene="res://scenes/boot/Boot.tscn"
+config/features=PackedStringArray("4.7", "Mobile")
+config/icon="res://icon.png"
+
+[autoload]
+
+SaveManager="*res://autoloads/SaveManager.gd"
+GameManager="*res://autoloads/GameManager.gd"
+EconomyManager="*res://autoloads/EconomyManager.gd"
+UIManager="*res://autoloads/UIManager.gd"
+AudioManager="*res://autoloads/AudioManager.gd"
+RiskManager="*res://autoloads/RiskManager.gd"
+ReputationManager="*res://autoloads/ReputationManager.gd"
+NotificationManager="*res://autoloads/NotificationManager.gd"
+BankManager="*res://autoloads/BankManager.gd"
+WorkManager="*res://autoloads/WorkManager.gd"
+EventManager="*res://autoloads/EventManager.gd"
+NPCManager="*res://autoloads/NPCManager.gd"
+MessageManager="*res://autoloads/MessageManager.gd"
+ProgressionManager="*res://autoloads/ProgressionManager.gd"
+LocalizationManager="*res://autoloads/LocalizationManager.gd"
+
+[display]
+
+window/size/viewport_width=1080
+window/size/viewport_height=1920
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
+renderer/rendering_method="mobile"

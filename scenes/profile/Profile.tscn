@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://profile1"]
+
+[ext_resource type="Theme" uid="uid://darknettheme1" path="res://DARKNET_THEME.tres" id="1_theme"]
+[ext_resource type="Script" path="res://scenes/profile/Profile.gd" id="2_script"]
+[ext_resource type="Texture2D" uid="uid://usflag1" path="res://assets/flags/us.jpg" id="3_us"]
+[ext_resource type="Texture2D" uid="uid://ruflag1" path="res://assets/flags/ru.jpg" id="4_ru"]
+[ext_resource type="Texture2D" uid="uid://uaflag1" path="res://assets/flags/ua.jpg" id="5_ua"]
+
+[node name="Profile" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_theme")
+script = ExtResource("2_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.04, 0.05, 1)
+
+[node name="SafeAreaMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBox" type="VBoxContainer" parent="SafeAreaMargin"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Header" type="HBoxContainer" parent="SafeAreaMargin/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="BackBtn" type="Button" parent="SafeAreaMargin/VBox/Header"]
+layout_mode = 2
+text = "< BACK"
+
+[node name="Title" type="Label" parent="SafeAreaMargin/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "PROFILE"
+horizontal_alignment = 1
+
+[node name="SettingsPanel" type="PanelContainer" parent="SafeAreaMargin/VBox"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="SafeAreaMargin/VBox/SettingsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="LangTitle" type="Label" parent="SafeAreaMargin/VBox/SettingsPanel/VBox"]
+layout_mode = 2
+text = "SYSTEM LANGUAGE"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.5, 0.5, 0.55, 1)
+
+[node name="LangBox" type="HBoxContainer" parent="SafeAreaMargin/VBox/SettingsPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="LangEn" type="Button" parent="SafeAreaMargin/VBox/SettingsPanel/VBox/LangBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " EN"
+icon = ExtResource("3_us")
+expand_icon = true
+
+[node name="LangRu" type="Button" parent="SafeAreaMargin/VBox/SettingsPanel/VBox/LangBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " RU"
+icon = ExtResource("4_ru")
+expand_icon = true
+
+[node name="LangUa" type="Button" parent="SafeAreaMargin/VBox/SettingsPanel/VBox/LangBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " UA"
+icon = ExtResource("5_ua")
+expand_icon = true
